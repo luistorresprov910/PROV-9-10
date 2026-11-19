@@ -83,3 +83,8 @@ ACTUALIZACIÓN DE CATÁLOGO (19/11/2026)
 
 
 ACTUALIZACIÓN V7: La navegación muestra una sola sección (Inicio, Sobre mí, Productos, Contacto o Blog) cada vez. En los productos con acabados configurados, el cliente puede elegir acabado y talla; ambos datos se guardan en la cesta y se incluyen en los metadatos del checkout. El catálogo del checkout se ha ampliado a los 15 productos. Los acabados configurados inicialmente son: Anillo Cruz Clásico (Acero, Dorado, Negro) y Anillo Cruz Dorada (Acero, Dorado). Confirma con el proveedor la disponibilidad real de cada acabado antes de activar ventas.
+
+
+NAVEGACIÓN ACTUALIZADA: la web ahora utiliza cinco archivos HTML independientes: index.html (Inicio), sobre-mi.html, productos.html, contacto.html y blog.html. Los enlaces del menú abren cada página por separado.
+
+VARIANTES: se han quitado los acabados de color que no estaban confirmados por el catálogo. El PDF muestra diseños distintos, no pruebas de variantes del mismo modelo. No ofrezcas acabados alternativos hasta confirmarlos con el proveedor.
