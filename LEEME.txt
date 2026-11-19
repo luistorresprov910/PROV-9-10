@@ -92,3 +92,7 @@ VARIANTES: se han quitado los acabados de color que no estaban confirmados por e
 
 FICHA INDIVIDUAL DE PRODUCTO
 En la página Productos, al pulsar una tarjeta se abre producto.html?id=pX, una ficha independiente con fotografía grande, nombre, precio, descripción, selector de talla y botón Añadir a la cesta. La ficha conserva la cesta compartida del sitio.
+
+
+FICHAS INDIVIDUALES Y ACABADOS
+La tienda incluye una página HTML independiente para cada uno de los 15 productos. Las fichas se abren desde las tarjetas del catálogo. Los modelos Anillo Sello Vintage y Anillo Ichthys tienen selector de acabado; la elección se conserva en la cesta y se transmite al checkout. Los acabados se han tomado de las opciones de producto visibles en Everful. Confirma disponibilidad y equivalencia exacta de SKU antes de vender.

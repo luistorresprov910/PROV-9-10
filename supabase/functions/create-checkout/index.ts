@@ -2,7 +2,7 @@ import { serve } from "https://deno.land/std@0.224.0/http/server.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 const CORS={"Access-Control-Allow-Origin":"*","Access-Control-Allow-Headers":"authorization, x-client-info, apikey, content-type","Access-Control-Allow-Methods":"POST, OPTIONS"};
 const catalog:Record<string,{name:string,price:number,variants?:string[]}>={
- p1:{name:"Anillo Cruz Clásico",price:6999,variants:["Acero","Dorado","Negro"]},p2:{name:"Anillo Ichthys",price:7499},p3:{name:"Anillo Cruz Dorada",price:7999,variants:["Acero","Dorado"]},p4:{name:"Anillo Sello Vintage",price:8999},
+ p1:{name:"Anillo Cruz Clásico",price:6999,variants:["Acero","Dorado","Negro"]},p2:{name:"Anillo Ichthys",price:7499,variants:["Negro con engranaje de plata","Negro dorado","Oro con engranaje de oro","Azul con engranaje de oro","Base de plata placa de plata"]},p3:{name:"Anillo Cruz Dorada",price:7999,variants:["Acero","Dorado"]},p4:{name:"Anillo Sello Vintage",price:8999,variants:["Plateado","Dorado","Negro"]},
  p5:{name:"Anillo Cruz de Jerusalén",price:8499},p6:{name:"Anillo Cruz Ancha",price:7499},p7:{name:"Anillo Corona de Espinas",price:8999},p8:{name:"Anillo Ichthys Plata",price:6999},p9:{name:"Anillo Cruz Trenzada",price:7999},p10:{name:"Anillo Alfa y Omega",price:8499},p11:{name:"Anillo Padre Nuestro",price:8999},p12:{name:"Anillo Cruz Martillada",price:8499},p13:{name:"Anillo IV +",price:7499},p14:{name:"Anillo Escudo Templario",price:8999},p15:{name:"Anillo Cruz Carbono",price:7999}
 };
 serve(async(req)=>{
