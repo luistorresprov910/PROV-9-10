@@ -6,13 +6,13 @@ QUÉ INCLUYE
 - Cuatro fichas de anillos, precios iniciales de 69,99 €, 74,99 €, 79,99 € y 89,99 €.
 - Selector de talla, cesta persistente en el navegador y resumen de compra.
 - PWA instalable (manifest + service worker).
-- Ventana para solicitar la guía y PDF de la guía cristiana.
+- Ventana automática del lead magnet: aparece a los 2,2 segundos en la primera visita de cada sesión. Incluye nombre, correo, consentimiento y acceso al PDF después de registrar los datos correctamente en Supabase.
 - Pantallas de registro/inicio de sesión preparadas para Supabase.
 - Integración preparada para Stripe Checkout mediante Supabase Edge Functions y webhook.
 - Textos iniciales de privacidad y términos, pendientes de completar y revisar.
 
 IMPORTANTE: NO ESTÁ LISTA PARA COBRAR NI PARA REGISTRAR CUENTAS HASTA CONFIGURAR LOS SERVICIOS EXTERNOS.
-No se han inventado claves ni se han simulado pagos. En el estado actual, el catálogo y la cesta funcionan en el navegador; registro, captación real de correos y pagos muestran que falta configuración.
+No se han inventado claves ni se han simulado pagos. En el estado actual, el catálogo y la cesta funcionan en el navegador; el pop-up se muestra automáticamente durante los primeros cinco segundos, pero el registro real de correos, las cuentas y los pagos necesitan configuración de Supabase y Stripe.
 
 PASO 1 — PUBLICAR LA PARTE VISUAL EN GITHUB PAGES
 1. Crea un repositorio público en GitHub, por ejemplo prov910-web.
@@ -60,7 +60,7 @@ PASO 4 — CAMBIAR DATOS DE CONTACTO Y TEXTOS LEGALES
 FOTOGRAFÍAS DE PRODUCTOS
 - El primer producto utiliza la fotografía que adjuntaste en esta conversación, centrada y ajustada con object-fit: contain para no deformarla.
 - Las otras tres imágenes se cargan desde la CDN de Everful a partir de los enlaces de producto que facilitaste. Necesitan conexión a internet y podrían cambiar o dejar de estar disponibles. Confirma con el proveedor que puedes utilizarlas comercialmente o sustitúyelas por fotografías propias autorizadas.
-- Las fotos se muestran dentro de marcos iguales, centradas, con fondo neutro y sin estirarlas.
+- Las fotos se muestran dentro de marcos iguales, centradas, con fondo neutro y sin estirarlas. La web usa el logotipo oficial que has facilitado, con versión negra para fondos claros y versión blanca para el pie oscuro.
 
 DATOS Y COPIAS DE SEGURIDAD
 - La cesta se guarda en localStorage del navegador. Borrar los datos del sitio puede eliminar la cesta.
