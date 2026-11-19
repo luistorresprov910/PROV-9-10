@@ -99,3 +99,14 @@ footer{padding:58px 20px 40px}.footer-brand{width:165px;height:95px;justify-cont
 .search-count{font-size:10px;color:#888;margin:9px 0 0}
 .no-products{padding:45px 20px;text-align:center;color:#777;font-size:13px;border:1px solid var(--line);background:#fff}
 @media(max-width:650px){.product-search{margin:-12px 0 26px}.search-field{min-height:48px}.search-field input{font-size:12px}}
+
+
+/* Navegación real entre apartados: solo una página principal visible cada vez. */
+main > section[hidden], .page-hidden { display: none !important; }
+.header nav a.active { font-weight: 700; color: var(--ink); }
+.product-variant { width:100%; min-width:0; border:1px solid var(--line); background:#fff; padding:10px 9px; font-size:11px; color:var(--ink); }
+.product-options { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+.product-options label { margin:0; font-size:9px; color:#777168; letter-spacing:.08em; }
+.product-options select { display:block; width:100%; margin-top:6px; border:1px solid var(--line); background:#fff; padding:10px 8px; font-size:11px; color:var(--ink); }
+.product-actions { margin-top:10px; }
+@media(max-width:650px){ .product-options { grid-template-columns:1fr 1fr; gap:6px; } .product-options select { font-size:10px; padding:9px 5px; } }

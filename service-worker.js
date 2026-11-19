@@ -1,4 +1,4 @@
-const CACHE='prov910-v6-navegacion-buscador';
+const CACHE='prov910-v7-paginas-variantes';
 const FILES=["./", "./index.html", "./styles.css", "./app.js", "./manifest.webmanifest", "./assets/icon.svg", "./assets/logo-prov910-principal.png", "./assets/logo-prov910-inverso.png", "./assets/anillo-referencia.png", "./assets/guia-prov910.pdf", "./assets/ring-05-templar-cross.jpg", "./assets/ring-06-classic-cross.jpg", "./assets/ring-07-crown-thorns.jpg", "./assets/ring-08-ichthys.jpg", "./assets/ring-09-braided-cross.jpg", "./assets/ring-10-alpha-omega.jpg", "./assets/ring-11-lords-prayer.jpg", "./assets/ring-12-hammered-gold-cross.jpg", "./assets/ring-13-roman-cross.jpg", "./assets/ring-14-templar-shield.jpg", "./assets/ring-15-carbon-cross.jpg"];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));

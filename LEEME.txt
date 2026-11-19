@@ -80,3 +80,6 @@ ACTUALIZACIÓN DE CATÁLOGO (19/11/2026)
 - Los precios son precios de venta propuestos dentro del rango solicitado (69,99 € a 89,99 €), no precios confirmados de proveedor.
 - Antes de vender, confirma disponibilidad, tallas, costes y autorización para utilizar comercialmente las fotografías del proveedor.
 - El logotipo original se ha recortado para retirar el margen de fondo y se ha creado la versión invertida para fondos oscuros.
+
+
+ACTUALIZACIÓN V7: La navegación muestra una sola sección (Inicio, Sobre mí, Productos, Contacto o Blog) cada vez. En los productos con acabados configurados, el cliente puede elegir acabado y talla; ambos datos se guardan en la cesta y se incluyen en los metadatos del checkout. El catálogo del checkout se ha ampliado a los 15 productos. Los acabados configurados inicialmente son: Anillo Cruz Clásico (Acero, Dorado, Negro) y Anillo Cruz Dorada (Acero, Dorado). Confirma con el proveedor la disponibilidad real de cada acabado antes de activar ventas.
