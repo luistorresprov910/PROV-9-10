@@ -23,13 +23,41 @@ const products = [
 const euro=n=>new Intl.NumberFormat('es-ES',{style:'currency',currency:'EUR'}).format(n);
 let cart=JSON.parse(localStorage.getItem('prov910_cart')||'[]');let authMode='login';
 const $=s=>document.querySelector(s);
-function renderProducts(){ $('#productGrid').innerHTML=products.map(p=>`<article class="product-card"><div class="product-photo"><img loading="lazy" src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src='assets/anillo-referencia.png'"></div><h3>${p.name}</h3><p class="product-meta">${p.desc}</p><div class="product-price">${euro(p.price)}</div><div class="product-actions"><select aria-label="Talla de ${p.name}" id="size-${p.id}"><option value="">Talla</option>${[16,17,18,19,20,21,22,23].map(x=>`<option>${x}</option>`).join('')}</select><button class="btn btn-dark" data-add="${p.id}">Añadir a la cesta</button></div></article>`).join('');document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>addToCart(b.dataset.add));}
+function renderProducts(){
+ const query=($('#productSearch')?.value||'').trim().toLocaleLowerCase('es');
+ const visible=products.filter(p=>`${p.name} ${p.desc}`.toLocaleLowerCase('es').includes(query));
+ $('#productGrid').innerHTML=visible.map(p=>`<article class="product-card"><div class="product-photo"><img loading="lazy" src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src='assets/anillo-referencia.png'"></div><h3>${p.name}</h3><p class="product-meta">${p.desc}</p><div class="product-price">${euro(p.price)}</div><div class="product-actions"><select aria-label="Talla de ${p.name}" id="size-${p.id}"><option value="">Talla</option>${[16,17,18,19,20,21,22,23].map(x=>`<option>${x}</option>`).join('')}</select><button class="btn btn-dark" data-add="${p.id}">Añadir a la cesta</button></div></article>`).join('');
+ $('#productSearchCount').textContent=query?`${visible.length} de ${products.length} diseños encontrados`:`${products.length} diseños disponibles`;
+ $('#noProducts').classList.toggle('hidden',visible.length!==0);
+ document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
+}
 function saveCart(){localStorage.setItem('prov910_cart',JSON.stringify(cart));renderCart();}
 function addToCart(id){const size=$('#size-'+id).value;if(!size){alert('Selecciona una talla antes de añadir el anillo.');return;}const item=cart.find(x=>x.id===id&&x.size===size);if(item)item.qty++;else cart.push({id,size,qty:1});saveCart();openCart();}
 function renderCart(){const count=cart.reduce((a,x)=>a+x.qty,0);$('#cartCount').textContent=count;const host=$('#cartItems');if(!cart.length){host.innerHTML='<p class="empty">Tu cesta está vacía.</p>';}else{host.innerHTML=cart.map((x,i)=>{const p=products.find(y=>y.id===x.id);return `<div class="cart-line"><img src="${p.image}" alt=""><div><strong>${p.name}</strong><small>Talla ${x.size} · Cantidad ${x.qty}</small><small>${euro(p.price*x.qty)}</small></div><button class="remove" data-remove="${i}">Quitar</button></div>`}).join('');host.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);saveCart();});}$('#cartTotal').textContent=euro(cart.reduce((a,x)=>a+products.find(p=>p.id===x.id).price*x.qty,0));}
 function openCart(){$('#cartDrawer').classList.remove('hidden');$('#scrim').classList.remove('hidden');}function closeCart(){$('#cartDrawer').classList.add('hidden');$('#scrim').classList.add('hidden');}
 function showModal(id){$('#'+id).classList.remove('hidden')}function hideModal(id){$('#'+id).classList.add('hidden')}
-$('#cartBtn').onclick=openCart;$('#closeCart').onclick=closeCart;$('#scrim').onclick=closeCart;document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>hideModal(b.dataset.close));document.querySelector('a[href="#privacy"]').onclick=e=>{e.preventDefault();showModal('privacy')};document.querySelector('a[href="#terms"]').onclick=e=>{e.preventDefault();showModal('terms')};$('#openLead').onclick=()=>showModal('leadModal');$('#accountBtn').onclick=()=>showModal('accountModal');$('#menuBtn').onclick=()=>$('#nav').classList.toggle('open');document.querySelectorAll('#nav a').forEach(a=>a.onclick=()=>$('#nav').classList.remove('open'));
+// Navegación por páginas: solo se muestra una sección principal cada vez.
+const pageIds=['home','sobre-mi','productos','contacto','blog'];
+function showPage(id,{updateHash=true,scroll=true}={}){
+ const page=pageIds.includes(id)?id:'home';
+ document.querySelectorAll('main > section').forEach(section=>{
+   const belongsHome=section.id==='home'||section.classList.contains('intro-strip')||section.classList.contains('lead-banner');
+   const active=page==='home'?belongsHome:section.id===page;
+   section.classList.toggle('page-hidden',!active);
+   section.setAttribute('aria-hidden',String(!active));
+ });
+ document.querySelectorAll('#nav a').forEach(a=>{
+   const active=a.getAttribute('href')===`#${page}`;
+   a.classList.toggle('active',active);
+   if(active)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');
+ });
+ $('#nav').classList.remove('open');
+ if(updateHash && location.hash!==`#${page}`) history.pushState({page},'',`#${page}`);
+ if(scroll)window.scrollTo({top:0,behavior:'smooth'});
+}
+function pageFromHash(){const id=location.hash.slice(1);return pageIds.includes(id)?id:'home';}
+
+$('#cartBtn').onclick=openCart;$('#closeCart').onclick=closeCart;$('#scrim').onclick=closeCart;document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>hideModal(b.dataset.close));document.querySelector('a[href="#privacy"]').onclick=e=>{e.preventDefault();showModal('privacy')};document.querySelector('a[href="#terms"]').onclick=e=>{e.preventDefault();showModal('terms')};$('#openLead').onclick=()=>showModal('leadModal');$('#accountBtn').onclick=()=>showModal('accountModal');$('#menuBtn').onclick=()=>$('#nav').classList.toggle('open');document.querySelectorAll('#nav a').forEach(a=>a.onclick=e=>{e.preventDefault();showPage(a.getAttribute('href').slice(1));});window.addEventListener('popstate',()=>showPage(pageFromHash(),{updateHash:false}));window.addEventListener('hashchange',()=>showPage(pageFromHash(),{updateHash:false}));
 $('#contactForm').onsubmit=e=>{e.preventDefault();const d=new FormData(e.target);const subject=encodeURIComponent('Consulta desde la web PROV 9:10');const body=encodeURIComponent(`Nombre: ${d.get('name')}\nCorreo: ${d.get('email')}\n\n${d.get('message')}`);$('#contactMsg').textContent='Se abrirá tu aplicación de correo para enviar el mensaje.';location.href=`mailto:hola@prov910.com?subject=${subject}&body=${body}`;};
 $('#leadForm').onsubmit=async e=>{e.preventDefault();const d=new FormData(e.target);if(!sb){$('#leadResult').innerHTML='<div class="error">La captación de suscriptores aún no está conectada. Configura Supabase siguiendo el archivo LEEME antes de publicar. No se ha enviado ni guardado tu correo.</div>';return;}const {error}=await sb.from('leads').insert({name:d.get('name'),email:d.get('email'),consent:true});if(error){$('#leadResult').innerHTML=`<div class="error">No se ha podido completar el registro: ${error.message}</div>`;return;}$('#leadResult').innerHTML='<div class="success">¡Gracias! Ya puedes descargar tu guía.</div><a class="btn btn-dark" style="margin-top:12px" href="assets/guia-prov910.pdf" download>Descargar guía PDF</a>';e.target.reset();};
 function setAuthMode(mode){authMode=mode;$('#authTitle').textContent=mode==='login'?'Iniciar sesión':'Crear cuenta';$('#authSubmit').textContent=mode==='login'?'Iniciar sesión':'Crear cuenta';$('#authNameWrap').classList.toggle('hidden',mode==='login');$('#toggleAuth').textContent=mode==='login'?'¿No tienes cuenta? Crear cuenta':'¿Ya tienes cuenta? Iniciar sesión';}
@@ -37,7 +65,7 @@ $('#toggleAuth').onclick=()=>setAuthMode(authMode==='login'?'signup':'login');$(
 $('#logoutBtn').onclick=async()=>{await sb?.auth.signOut();$('#guideAccess').classList.add('hidden');$('#logoutBtn').classList.add('hidden');$('#authMessage').textContent='Has cerrado sesión.';};
 if(sb){sb.auth.getSession().then(({data})=>{if(data.session){$('#guideAccess').classList.remove('hidden');$('#logoutBtn').classList.remove('hidden');}})}
 $('#checkoutBtn').onclick=async()=>{if(!cart.length){$('#checkoutNote').textContent='Añade algún producto antes de continuar.';return;}if(!sb){$('#checkoutNote').textContent='Pago no activado: configura Supabase y Stripe siguiendo LEEME. No se realizará ningún cobro.';return;}$('#checkoutNote').textContent='Conectando con el sistema de pago…';const {data:{session}}=await sb.auth.getSession();if(!session){$('#checkoutNote').textContent='Inicia sesión o crea una cuenta antes de pagar.';showModal('accountModal');return;}const {data,error}=await sb.functions.invoke('create-checkout',{body:{items:cart}});if(error||!data?.url){$('#checkoutNote').textContent='No se ha podido iniciar el pago. Revisa la configuración de Stripe.';return;}location.href=data.url;};
-$('#year').textContent=new Date().getFullYear();renderProducts();renderCart();
+$('#year').textContent=new Date().getFullYear();renderProducts();renderCart();$('#productSearch').addEventListener('input',renderProducts);$('#clearProductSearch').onclick=()=>{$('#productSearch').value='';renderProducts();$('#productSearch').focus();};showPage(pageFromHash(),{updateHash:false,scroll:false});
 // Lead magnet: automatic first-visit popup, shown within the first five seconds.
 try{if(!sessionStorage.getItem('prov910_lead_seen')){setTimeout(()=>{if(!sessionStorage.getItem('prov910_lead_seen')){showModal('leadModal');sessionStorage.setItem('prov910_lead_seen','1');}},2200);}}catch(e){setTimeout(()=>showModal('leadModal'),2200);}
 // Mark the popup as seen when the visitor closes it manually.

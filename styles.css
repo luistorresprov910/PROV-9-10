@@ -83,3 +83,19 @@ footer{padding:58px 20px 40px}.footer-brand{width:165px;height:95px;justify-cont
 .product-price{font-size:14px;font-weight:600;letter-spacing:.02em}
 @media(max-width:900px){.header{height:76px}.header .brand{width:76px;height:70px;flex-basis:76px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.product-photo{height:245px}}
 @media(max-width:650px){.header{height:72px}.header .brand{width:68px;height:66px;flex-basis:68px}.hero-brand-lockup{width:128px;height:120px;margin-bottom:17px}.footer-brand{width:100px;height:92px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 12px}.product-photo{height:190px;padding:10px}.product-card h3{font-size:13px;min-height:36px}.product-meta{min-height:42px;font-size:9px}.product-actions{margin:10px 10px 0}.product-actions select,.product-actions button{font-size:9px}}
+
+/* Navegación por páginas independientes */
+.page-hidden{display:none!important}
+.header nav a.active{color:var(--ink);font-weight:700;position:relative}
+.header nav a.active:after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:1px;background:var(--ink)}
+.product-search{max-width:520px;margin:-18px 0 34px}
+.search-label{display:block;margin:0 0 9px;color:#777168;font-size:9px;letter-spacing:.18em;font-weight:700}
+.search-field{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #dcd6cc;padding:0 13px;min-height:50px;transition:border-color .2s,box-shadow .2s}
+.search-field:focus-within{border-color:#81796e;box-shadow:0 4px 18px #1717170a}
+.search-field>span{font-family:Georgia,serif;font-size:25px;color:#777;line-height:1}
+.search-field input{border:0!important;box-shadow:none!important;outline:none;margin:0;padding:13px 0;background:transparent;font-size:13px;min-width:0}
+.search-field input:focus{border:0}
+.search-field button{border:0;background:transparent;color:#777;font-size:23px;line-height:1;cursor:pointer;padding:6px}
+.search-count{font-size:10px;color:#888;margin:9px 0 0}
+.no-products{padding:45px 20px;text-align:center;color:#777;font-size:13px;border:1px solid var(--line);background:#fff}
+@media(max-width:650px){.product-search{margin:-12px 0 26px}.search-field{min-height:48px}.search-field input{font-size:12px}}
