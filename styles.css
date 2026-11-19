@@ -133,3 +133,38 @@ main > section[hidden], .page-hidden { display: none !important; }
 
 /* Selector de acabado en fichas de producto */
 .detail-finish{margin-bottom:10px}.finish-hint{font-size:11px;color:#77736c;margin:0 0 22px;line-height:1.6}
+
+
+/* Microinteracciones sutiles PROV 9:10 */
+@view-transition { navigation: auto; }
+::view-transition-old(root){animation:provFadeOut .16s ease both}
+::view-transition-new(root){animation:provFadeIn .34s cubic-bezier(.2,.7,.2,1) both}
+@keyframes provFadeOut{to{opacity:0;filter:blur(2px)}}
+@keyframes provFadeIn{from{opacity:0;transform:translateY(8px);filter:blur(2px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+body{animation:provPageIn .42s cubic-bezier(.2,.7,.2,1) both}
+@keyframes provPageIn{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+html.page-leaving body{opacity:.72;transform:translateY(-3px);transition:opacity .12s ease,transform .12s ease}
+.product-card-link{overflow:hidden;transform:translateY(0);transition:transform .28s cubic-bezier(.2,.7,.2,1),box-shadow .28s ease,opacity .25s ease;animation:provCardIn .42s both;animation-delay:calc(var(--card-index,0)*35ms)}
+@keyframes provCardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.product-card-main{display:block;color:inherit;text-decoration:none}
+.product-card-link:hover{transform:translateY(-5px);box-shadow:0 14px 32px rgba(25,22,17,.07)}
+.product-card-link:active{transform:scale(.985)}
+.product-photo img{transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .25s ease}
+.product-card-link:hover .product-photo img{transform:scale(1.045)}
+.product-card-finish{padding:0 18px 12px;display:grid;gap:7px}
+.product-card-finish label{font-size:9px;letter-spacing:.16em;color:#77736c;font-weight:700}
+.card-finish-select{width:100%;height:39px;border:1px solid var(--line);background:#fff;color:var(--ink);padding:0 10px;font:11px var(--sans);border-radius:0;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.card-finish-select:focus,.detail-finish:focus{outline:none;border-color:#777;box-shadow:0 0 0 3px rgba(20,20,20,.055)}
+.product-view-link{transition:color .2s}
+.product-card-link:hover .product-view-link{color:#777}
+.detail-photo{overflow:hidden}
+.detail-photo img{transition:transform .65s cubic-bezier(.2,.7,.2,1),opacity .35s ease;animation:provImageIn .55s ease both}
+@keyframes provImageIn{from{opacity:.5;transform:scale(.975)}to{opacity:1;transform:scale(1)}}
+.detail-info{animation:provInfoIn .48s .06s both}
+@keyframes provInfoIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.detail-add{transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.detail-add:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.1)}
+.detail-add:active{transform:scale(.985)}
+.btn,.icon-btn,.header nav a{transition:opacity .2s ease,transform .2s ease,background .2s ease}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}html.page-leaving body{opacity:1;transform:none}}
+@media(max-width:650px){.product-card-finish{padding-left:12px;padding-right:12px}}

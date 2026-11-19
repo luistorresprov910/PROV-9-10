@@ -1,4 +1,4 @@
-const CACHE = 'prov910-product-pages-finishes-v5';
+const CACHE = 'prov910-elegant-motion-finishes-v6';
 const FILES = [
   './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html',
   './styles.css', './app.js', './manifest.webmanifest',

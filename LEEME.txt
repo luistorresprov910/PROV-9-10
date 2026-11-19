@@ -96,3 +96,9 @@ En la página Productos, al pulsar una tarjeta se abre producto.html?id=pX, una 
 
 FICHAS INDIVIDUALES Y ACABADOS
 La tienda incluye una página HTML independiente para cada uno de los 15 productos. Las fichas se abren desde las tarjetas del catálogo. Los modelos Anillo Sello Vintage y Anillo Ichthys tienen selector de acabado; la elección se conserva en la cesta y se transmite al checkout. Los acabados se han tomado de las opciones de producto visibles en Everful. Confirma disponibilidad y equivalencia exacta de SKU antes de vender.
+
+
+ACTUALIZACIÓN DE INTERFAZ
+- Se añadieron transiciones suaves entre páginas, animación discreta de entrada y microinteracciones en tarjetas y fichas.
+- Los productos con acabados (Anillo Ichthys y Anillo Sello Vintage) muestran selector también en el catálogo y en su ficha individual. La selección del catálogo se conserva al abrir la ficha y se añade a la cesta junto con la talla.
+- Las animaciones respetan la preferencia de reducir movimiento del dispositivo.

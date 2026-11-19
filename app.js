@@ -28,10 +28,14 @@ function renderProducts(){
  if(!search) return;
  const query=search.value.trim().toLocaleLowerCase('es');
  const visible=products.filter(p=>`${p.name} ${p.desc}`.toLocaleLowerCase('es').includes(query));
- $('#productGrid').innerHTML=visible.map(p=>`<a class="product-card product-card-link" href="${p.page}" aria-label="Ver ${p.name}"><div class="product-photo"><img loading="lazy" src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src='assets/anillo-referencia.png'"></div><h3>${p.name}</h3><p class="product-meta">${p.desc}</p><div class="product-price">${euro(p.price)}</div><span class="product-view-link">VER PRODUCTO <span aria-hidden="true">→</span></span></a>`).join('');
+ $('#productGrid').innerHTML=visible.map((p,i)=>`<article class="product-card product-card-link" style="--card-index:${i}"><a class="product-card-main" href="${p.page}" aria-label="Ver ${p.name}"><div class="product-photo"><img loading="lazy" src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src='assets/anillo-referencia.png'"></div><h3>${p.name}</h3><p class="product-meta">${p.desc}</p><div class="product-price">${euro(p.price)}</div></a>${p.finishes?`<div class="product-card-finish"><label for="card-finish-${p.id}">ACABADO</label><select id="card-finish-${p.id}" class="card-finish-select" data-finish-card="${p.id}"><option value="">Selecciona un acabado</option>${p.finishes.map(x=>`<option value="${x}">${x}</option>`).join('')}</select></div>`:''}<a class="product-view-link" href="${p.page}">VER PRODUCTO <span aria-hidden="true">→</span></a></article>`).join('');
  $('#productSearchCount').textContent=query?`${visible.length} de ${products.length} diseños encontrados`:`${products.length} diseños disponibles`;
  $('#noProducts').classList.toggle('hidden',visible.length!==0);
- document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>addToCart(b.dataset.add));
+ document.querySelectorAll('[data-finish-card]').forEach(sel=>{
+   const id=sel.dataset.finishCard;
+   try{const saved=sessionStorage.getItem('prov910_finish_'+id);if(saved)sel.value=saved;}catch(e){}
+   sel.addEventListener('change',()=>{try{if(sel.value)sessionStorage.setItem('prov910_finish_'+id,sel.value);else sessionStorage.removeItem('prov910_finish_'+id);}catch(e){}});
+ });
 }
 function saveCart(){localStorage.setItem('prov910_cart',JSON.stringify(cart));renderCart();}
 function addToCart(id){const size=$('#size-'+id)?.value;if(!size){alert('Selecciona una talla antes de añadir el anillo.');return;}const p=products.find(x=>x.id===id);const variant=p?.finishes?$('#finish-'+id)?.value:'';if(p?.finishes&&!variant){alert('Selecciona un acabado antes de añadir el anillo.');return;}const item=cart.find(x=>x.id===id&&x.size===size&&(x.variant||'')===variant);if(item)item.qty++;else cart.push({id,size,variant,qty:1});saveCart();openCart();}
@@ -53,8 +57,23 @@ function renderProductDetail(){
  if(!p){host.innerHTML='<div class="product-not-found"><p class="eyebrow">COLECCIÓN PROV 9:10</p><h1>Producto no encontrado</h1><a class="btn btn-dark" href="productos.html">Volver a productos</a></div>';return;}
  document.title=`${p.name} | PROV 9:10`;
  host.innerHTML=`<a class="back-to-products" href="productos.html">← Volver a la colección</a><div class="detail-layout"><div class="detail-photo"><img src="${p.image}" alt="${p.name}" onerror="this.onerror=null;this.src='assets/anillo-referencia.png'"></div><div class="detail-info"><p class="eyebrow">PROV 9:10 · ANILLOS CON SIGNIFICADO</p><h1>${p.name}</h1><p class="detail-price">${euro(p.price)}</p><p class="detail-description">${p.desc}. Una pieza de estilo atemporal, pensada para llevar contigo un símbolo de aquello en lo que crees.</p><div class="detail-rule"></div>${p.finishes?`<label class="detail-size-label" for="finish-${p.id}">ELIGE EL ACABADO</label><select class="detail-size detail-finish" id="finish-${p.id}"><option value="">Selecciona un acabado</option>${p.finishes.map(x=>`<option value="${x}">${x}</option>`).join('')}</select><p class="finish-hint">Elige el acabado que prefieras para este diseño.</p>`:''}<label class="detail-size-label" for="size-${p.id}">ELIGE TU TALLA</label><select class="detail-size" id="size-${p.id}"><option value="">Selecciona una talla</option>${[16,17,18,19,20,21,22,23].map(x=>`<option value="${x}">${x}</option>`).join('')}</select><button class="btn btn-dark detail-add" data-add="${p.id}">AÑADIR A LA CESTA</button><p class="detail-note">Acero inoxidable · Diseño masculino · PROV 9:10</p><div class="detail-rule"></div><details class="detail-accordion"><summary>Detalles del producto</summary><p>${p.desc}. Consulta la disponibilidad de tallas y las características exactas antes de realizar tu pedido.</p></details><details class="detail-accordion"><summary>Envíos y devoluciones</summary><p>La información definitiva sobre plazos de envío, devoluciones y garantías se publicará cuando se confirme con el proveedor.</p></details></div></div>`;
+ const finishSelect=host.querySelector(`#finish-${p.id}`);
+ if(finishSelect){try{const saved=sessionStorage.getItem('prov910_finish_'+p.id);if(saved&&p.finishes.includes(saved))finishSelect.value=saved;}catch(e){} finishSelect.addEventListener('change',()=>{try{if(finishSelect.value)sessionStorage.setItem('prov910_finish_'+p.id,finishSelect.value);else sessionStorage.removeItem('prov910_finish_'+p.id);}catch(e){}});}
  const add=host.querySelector('[data-add]'); if(add)add.onclick=()=>addToCart(p.id);
 }
+
+// Transiciones discretas entre páginas y al abrir fichas de producto.
+document.addEventListener('click',event=>{
+ const link=event.target.closest('a[href]');
+ if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||link.target==='_blank'||link.hasAttribute('download'))return;
+ const url=new URL(link.href,location.href);
+ if(url.origin!==location.origin||url.pathname===location.pathname&&url.search===location.search||url.hash&&url.pathname===location.pathname)return;
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ event.preventDefault();
+ document.documentElement.classList.add('page-leaving');
+ window.setTimeout(()=>{location.href=url.href;},125);
+});
+
 $('#year').textContent=new Date().getFullYear();renderProducts();renderProductDetail();renderCart();if($('#productSearch'))$('#productSearch').addEventListener('input',renderProducts);if($('#clearProductSearch'))$('#clearProductSearch').onclick=()=>{$('#productSearch').value='';renderProducts();$('#productSearch').focus();};
 // Lead magnet: automatic first-visit popup, shown within the first five seconds.
 try{if(!sessionStorage.getItem('prov910_lead_seen')){setTimeout(()=>{if(!sessionStorage.getItem('prov910_lead_seen')){showModal('leadModal');sessionStorage.setItem('prov910_lead_seen','1');}},2200);}}catch(e){setTimeout(()=>showModal('leadModal'),2200);}
