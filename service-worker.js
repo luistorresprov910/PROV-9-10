@@ -1,6 +1,6 @@
-const CACHE = 'prov910-multipage-v3';
+const CACHE = 'prov910-multipage-v4';
 const FILES = [
-  './', './index.html', './sobre-mi.html', './productos.html', './contacto.html', './blog.html',
+  './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html',
   './styles.css', './app.js', './manifest.webmanifest',
   './assets/icon.svg', './assets/logo-prov910-principal.png', './assets/logo-prov910-inverso.png',
   './assets/logo-prov910-white.png', './assets/anillo-referencia.png', './assets/guia-prov910.pdf',

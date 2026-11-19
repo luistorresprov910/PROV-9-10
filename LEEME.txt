@@ -88,3 +88,7 @@ ACTUALIZACIÓN V7: La navegación muestra una sola sección (Inicio, Sobre mí, 
 NAVEGACIÓN ACTUALIZADA: la web ahora utiliza cinco archivos HTML independientes: index.html (Inicio), sobre-mi.html, productos.html, contacto.html y blog.html. Los enlaces del menú abren cada página por separado.
 
 VARIANTES: se han quitado los acabados de color que no estaban confirmados por el catálogo. El PDF muestra diseños distintos, no pruebas de variantes del mismo modelo. No ofrezcas acabados alternativos hasta confirmarlos con el proveedor.
+
+
+FICHA INDIVIDUAL DE PRODUCTO
+En la página Productos, al pulsar una tarjeta se abre producto.html?id=pX, una ficha independiente con fotografía grande, nombre, precio, descripción, selector de talla y botón Añadir a la cesta. La ficha conserva la cesta compartida del sitio.
