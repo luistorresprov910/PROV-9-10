@@ -110,3 +110,10 @@ ACTUALIZACIÓN DE FOTOGRAFÍAS
 - Cada ficha de los diseños del PDF dispone de una vista principal y un acercamiento de detalle derivado de la misma fotografía (no es una segunda toma).
 - Los cuatro modelos iniciales de Everful mantienen sus imágenes de origen; tres se cargan desde el CDN del proveedor porque no se aportó una copia local de alta resolución.
 - Los acabados se mantienen como opciones seleccionables cuando están definidos. No se han inventado fotografías de acabados que no estaban disponibles.
+
+
+ACTUALIZACIÓN DEL CATÁLOGO
+- Los 11 diseños del PDF aparecen primero en la colección, cada uno con su fotografía propia.
+- Los 4 modelos de los enlaces iniciales aparecen en un bloque separado al final.
+- La fotografía de los modelos Ichthys, Cruz Celta y Sello Vintage de los enlaces iniciales no se ha podido recuperar desde la URL del proveedor. Se muestra un marcador neutro para evitar repetir por error la foto de otro anillo. Sustituirlo por la foto original del proveedor antes de vender.
+- Los acabados del Ichthys y del Sello Vintage se conservan en sus fichas y se guardan en la cesta.

@@ -1,8 +1,8 @@
-const CACHE = 'prov910-photo-gallery-v7';
+const CACHE = 'prov910-catalog-fixed-v8';
 const FILES = [
   './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html',
   './styles.css', './app.js', './manifest.webmanifest',
-  './assets/icon.svg', './assets/logo-prov910-principal.png', './assets/logo-prov910-inverso.png',
+  './assets/icon.svg', './assets/image-proveedor-pendiente.svg', './assets/logo-prov910-principal.png', './assets/logo-prov910-inverso.png',
   './assets/catalog/ring-05-templar-cross-pro.jpg',
   './assets/catalog/ring-05-templar-cross-detalle.jpg',
   './assets/catalog/ring-06-classic-cross-pro.jpg',
@@ -35,8 +35,8 @@ const FILES = [
   './assets/ring-13-roman-cross.jpg', './assets/ring-14-templar-shield.jpg',
   './assets/ring-15-carbon-cross.jpg',
   './anillo-cruz-clasico.html',
-  './anillo-ichthys.html',
-  './anillo-cruz-dorada.html',
+  './anillo-ichthys.html', './anillo-minimalista.html',
+  './anillo-cruz-dorada.html', './anillo-cruz-celta.html',
   './anillo-sello-vintage.html',
   './anillo-cruz-jerusalen.html',
   './anillo-cruz-ancha.html',

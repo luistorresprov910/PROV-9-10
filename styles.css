@@ -179,3 +179,13 @@ html.page-leaving body{opacity:.72;transform:translateY(-3px);transition:opacity
 .detail-thumb.active{border-color:#171717;}
 .detail-thumb:hover{transform:translateY(-2px);}
 @media(max-width:800px){.detail-gallery{position:static}.detail-gallery .detail-photo{aspect-ratio:1/1;min-height:0;height:auto;padding:24px}.detail-thumbnails{justify-content:center}.detail-thumb{width:68px;height:68px}}
+
+/* Catálogo: los 11 diseños del PDF se muestran primero y con fotos propias */
+.product-group-heading{grid-column:1/-1;padding:28px 0 8px;border-bottom:1px solid var(--line);margin:8px 0 2px}
+.product-group-heading .eyebrow{margin:0 0 8px}
+.product-group-heading h3{font:500 clamp(23px,2.4vw,31px) var(--serif);margin:0 0 7px}
+.product-group-heading>p:last-child{font-size:12px;color:var(--muted);margin:0 0 8px}
+.product-group-heading.secondary-group{margin-top:46px}
+.image-pending{background:#efede8;color:#756f66;display:flex;align-items:center;justify-content:center;text-align:center}
+.image-pending span{font:italic 14px Georgia,serif;padding:22px;line-height:1.5}
+.product-photo img{object-fit:contain}

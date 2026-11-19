@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+<rect width="800" height="800" fill="#efede8"/>
+<circle cx="400" cy="360" r="150" fill="none" stroke="#b6afa3" stroke-width="30"/>
+<ellipse cx="400" cy="360" rx="150" ry="150" fill="none" stroke="#d4cec4" stroke-width="8"/>
+<text x="400" y="610" text-anchor="middle" font-family="Georgia,serif" font-size="28" fill="#6d675f">Fotografía pendiente</text>
+<text x="400" y="650" text-anchor="middle" font-family="Arial,sans-serif" font-size="18" letter-spacing="4" fill="#8b857c">PROV 9:10</text>
+</svg>
