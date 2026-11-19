@@ -102,3 +102,11 @@ ACTUALIZACIÓN DE INTERFAZ
 - Se añadieron transiciones suaves entre páginas, animación discreta de entrada y microinteracciones en tarjetas y fichas.
 - Los productos con acabados (Anillo Ichthys y Anillo Sello Vintage) muestran selector también en el catálogo y en su ficha individual. La selección del catálogo se conserva al abrir la ficha y se añade a la cesta junto con la talla.
 - Las animaciones respetan la preferencia de reducir movimiento del dispositivo.
+
+
+ACTUALIZACIÓN DE FOTOGRAFÍAS
+- Se han extraído por separado los 11 anillos del PDF original, incluso cuando había dos fotografías en una misma página.
+- Se han preparado imágenes cuadradas de 1800 x 1800 px con mejora moderada de contraste, luz y nitidez, manteniendo el diseño original de cada anillo.
+- Cada ficha de los diseños del PDF dispone de una vista principal y un acercamiento de detalle derivado de la misma fotografía (no es una segunda toma).
+- Los cuatro modelos iniciales de Everful mantienen sus imágenes de origen; tres se cargan desde el CDN del proveedor porque no se aportó una copia local de alta resolución.
+- Los acabados se mantienen como opciones seleccionables cuando están definidos. No se han inventado fotografías de acabados que no estaban disponibles.
