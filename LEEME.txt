@@ -72,3 +72,11 @@ PRUEBAS REALIZADAS EN ESTE PAQUETE
 - Se ha comprobado la estructura y presencia de los archivos del proyecto.
 - No se ha podido probar una compra real, el registro real ni el envío real de correos porque no se han proporcionado claves de Supabase o Stripe.
 - La publicación final debe probarse en la URL de GitHub Pages, incluyendo enlaces, imágenes, registro, cesta, pago de prueba y webhook.
+
+
+ACTUALIZACIÓN DE CATÁLOGO (19/11/2026)
+- Se han incorporado los 11 diseños del PDF facilitado, además de los 4 modelos iniciales: 15 fichas en total.
+- Las fotografías extraídas del PDF se han guardado localmente en assets/ para que no dependan de enlaces externos.
+- Los precios son precios de venta propuestos dentro del rango solicitado (69,99 € a 89,99 €), no precios confirmados de proveedor.
+- Antes de vender, confirma disponibilidad, tallas, costes y autorización para utilizar comercialmente las fotografías del proveedor.
+- El logotipo original se ha recortado para retirar el margen de fondo y se ha creado la versión invertida para fondos oscuros.
