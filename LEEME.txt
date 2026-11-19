@@ -1,0 +1,74 @@
+PROV 9:10 — WEB INICIAL PARA GITHUB PAGES
+========================================
+
+QUÉ INCLUYE
+- Web responsive en español con Home, Sobre mí, Productos, Contacto y Blog en ese orden.
+- Cuatro fichas de anillos, precios iniciales de 69,99 €, 74,99 €, 79,99 € y 89,99 €.
+- Selector de talla, cesta persistente en el navegador y resumen de compra.
+- PWA instalable (manifest + service worker).
+- Ventana para solicitar la guía y PDF de la guía cristiana.
+- Pantallas de registro/inicio de sesión preparadas para Supabase.
+- Integración preparada para Stripe Checkout mediante Supabase Edge Functions y webhook.
+- Textos iniciales de privacidad y términos, pendientes de completar y revisar.
+
+IMPORTANTE: NO ESTÁ LISTA PARA COBRAR NI PARA REGISTRAR CUENTAS HASTA CONFIGURAR LOS SERVICIOS EXTERNOS.
+No se han inventado claves ni se han simulado pagos. En el estado actual, el catálogo y la cesta funcionan en el navegador; registro, captación real de correos y pagos muestran que falta configuración.
+
+PASO 1 — PUBLICAR LA PARTE VISUAL EN GITHUB PAGES
+1. Crea un repositorio público en GitHub, por ejemplo prov910-web.
+2. Sube el contenido de esta carpeta (index.html, styles.css, app.js, assets, etc.) a la raíz del repositorio.
+3. En GitHub entra en Settings > Pages.
+4. En Build and deployment elige Deploy from a branch.
+5. Selecciona la rama main y la carpeta /(root), y guarda.
+6. Espera a que GitHub Pages publique la web.
+
+PASO 2 — ACTIVAR CUENTAS Y FORMULARIO DE LA GUÍA CON SUPABASE
+1. Crea un proyecto en https://supabase.com/.
+2. En Project Settings > API copia Project URL y anon/public key.
+3. Abre app.js y pega esos valores en SUPABASE_URL y SUPABASE_ANON_KEY.
+4. En Supabase > SQL Editor ejecuta supabase/schema.sql.
+5. En Authentication > URL Configuration añade la URL publicada en Site URL y Redirect URLs.
+6. Revisa el proveedor Email y activa la confirmación de correo si procede.
+7. Despliega las Edge Functions indicadas más abajo.
+
+PASO 3 — ACTIVAR PAGOS REALES CON STRIPE
+Necesitas una cuenta Stripe verificada y una función de servidor. No pongas nunca la clave secreta de Stripe en app.js ni en ningún archivo público.
+
+1. Crea una cuenta en https://stripe.com/.
+2. Instala Supabase CLI y vincúlala al proyecto: supabase link --project-ref TU_PROJECT_REF.
+3. Configura secretos en Supabase Functions:
+   supabase secrets set STRIPE_SECRET_KEY=sk_test_... SITE_URL=https://TU_USUARIO.github.io/TU_REPOSITORIO SUPABASE_URL=https://TU_PROYECTO.supabase.co SUPABASE_ANON_KEY=TU_ANON_KEY SUPABASE_SERVICE_ROLE_KEY=TU_SERVICE_ROLE_KEY
+4. Despliega:
+   supabase functions deploy create-checkout
+   supabase functions deploy stripe-webhook --no-verify-jwt
+5. En Stripe crea un webhook que apunte a:
+   https://TU_PROYECTO.supabase.co/functions/v1/stripe-webhook
+   Suscríbelo al evento checkout.session.completed.
+6. Copia el secreto whsec_... y configúralo:
+   supabase secrets set STRIPE_WEBHOOK_SECRET=whsec_...
+7. Haz primero pagos de prueba con las claves sk_test_ y una tarjeta de prueba de Stripe.
+8. Solo después de verificar pedidos, importes, impuestos, envíos y devoluciones, cambia a claves live.
+
+ATENCIÓN: la función de checkout usa los precios configurados en supabase/functions/create-checkout/index.ts. Actualiza el catálogo y los importes ahí si cambias los precios de la web. Configura impuestos, dirección de envío, gastos de envío y política de devoluciones antes de aceptar pagos reales. El prototipo actual no cobra gastos de envío ni calcula IVA por separado.
+
+PASO 4 — CAMBIAR DATOS DE CONTACTO Y TEXTOS LEGALES
+- Sustituye hola@prov910.com por tu correo real en index.html y app.js.
+- Completa la identidad legal del vendedor, NIF, dirección, contacto, condiciones de entrega, devoluciones y desistimiento.
+- Los textos legales incluidos son solo una plantilla y deben revisarse para tu situación real antes de publicar.
+- Revisa la casilla de consentimiento y la forma de gestionar las solicitudes de privacidad.
+
+FOTOGRAFÍAS DE PRODUCTOS
+- El primer producto utiliza la fotografía que adjuntaste en esta conversación, centrada y ajustada con object-fit: contain para no deformarla.
+- Las otras tres imágenes se cargan desde la CDN de Everful a partir de los enlaces de producto que facilitaste. Necesitan conexión a internet y podrían cambiar o dejar de estar disponibles. Confirma con el proveedor que puedes utilizarlas comercialmente o sustitúyelas por fotografías propias autorizadas.
+- Las fotos se muestran dentro de marcos iguales, centradas, con fondo neutro y sin estirarlas.
+
+DATOS Y COPIAS DE SEGURIDAD
+- La cesta se guarda en localStorage del navegador. Borrar los datos del sitio puede eliminar la cesta.
+- Las cuentas y pedidos, una vez conectado Supabase, se guardan en el proyecto Supabase.
+- No hay sincronización de cesta entre dispositivos.
+- Exporta y conserva los datos del proyecto Supabase y no compartas las claves privadas.
+
+PRUEBAS REALIZADAS EN ESTE PAQUETE
+- Se ha comprobado la estructura y presencia de los archivos del proyecto.
+- No se ha podido probar una compra real, el registro real ni el envío real de correos porque no se han proporcionado claves de Supabase o Stripe.
+- La publicación final debe probarse en la URL de GitHub Pages, incluyendo enlaces, imágenes, registro, cesta, pago de prueba y webhook.
