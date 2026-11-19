@@ -189,3 +189,14 @@ html.page-leaving body{opacity:.72;transform:translateY(-3px);transition:opacity
 .image-pending{background:#efede8;color:#756f66;display:flex;align-items:center;justify-content:center;text-align:center}
 .image-pending span{font:italic 14px Georgia,serif;padding:22px;line-height:1.5}
 .product-photo img{object-fit:contain}
+
+/* FIX V9: catálogo completo visible y lead magnet centrado en el viewport */
+#productGrid{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;}
+#productGrid>.product-group-heading{grid-column:1/-1!important;width:100%;}
+#productGrid>.product-card{min-width:0;width:100%;}
+.modal#leadModal{position:fixed!important;inset:0!important;width:100vw;height:100vh;height:100dvh;min-height:100vh;display:grid;place-items:center;overflow-y:auto;overscroll-behavior:contain;padding:20px!important;margin:0!important;z-index:9999!important;}
+.modal#leadModal.hidden{display:none!important;}
+.modal#leadModal>.lead-card{position:relative!important;inset:auto!important;align-self:center;justify-self:center;margin:auto!important;width:min(100%,490px);max-height:calc(100dvh - 40px);overflow-y:auto;}
+body.modal-open{overflow:hidden!important;}
+@media(max-width:900px){#productGrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:560px){#productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;} .modal#leadModal{padding:12px!important;} .modal#leadModal>.lead-card{max-height:calc(100dvh - 24px);}}
