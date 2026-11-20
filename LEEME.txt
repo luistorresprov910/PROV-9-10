@@ -127,10 +127,19 @@ PASO 5 — RESEÑAS SIN BASE DE DATOS EXTERNA
 - Para compartir reseñas entre todos los visitantes hace falta conectar una base de datos online. El soporte opcional de Supabase y el archivo supabase/reviews.sql se conservan para esa futura configuración.
 
 
-CONFIGURACIÓN DE RESEÑAS COMPARTIDAS (SUPABASE)
-1. El archivo app.js ya incluye la URL del proyecto y la Publishable key pública.
-2. En Supabase abre SQL Editor > New query.
-3. Copia y ejecuta todo el contenido de supabase/reviews.sql.
-4. Publica esta versión actualizada de la web en GitHub Pages.
-5. Las reseñas nuevas se publican automáticamente y se comparten entre visitantes.
-Nota: las reseñas anteriores guardadas solo en localStorage no se migran automáticamente.
+ACTUALIZACIÓN — RESEÑAS COMPARTIDAS CON SUPABASE
+================================================
+- La web usa la URL y la clave pública del proyecto Supabase ya configuradas en app.js.
+- Las reseñas se consultan y publican mediante el REST API de Supabase.
+- La carga de reseñas en fichas de producto se inicializa después de crear el contenido de cada ficha.
+- El SQL de supabase/reviews.sql concede USAGE en public y SELECT/INSERT a anon y authenticated; RLS sigue controlando las filas.
+
+PARA ACTUALIZAR GITHUB PAGES
+1. Descomprime este ZIP.
+2. Abre la carpeta prov910_visual.
+3. Sube TODO el contenido de esa carpeta a la raíz del repositorio GitHub, aceptando reemplazar los archivos existentes.
+4. Espera a que GitHub Pages termine el despliegue y recarga la web con Ctrl+F5.
+5. No subas la carpeta prov910_visual como una subcarpeta adicional: index.html, app.js, reviews.html y assets deben quedar en la raíz del repositorio.
+
+NOTA DE CONFIGURACIÓN
+Si el API de Supabase devuelve un error 401/403/404, el mensaje de la página de reseñas mostrará el código y el detalle recibido para identificar el ajuste pendiente. No se muestra una falsa confirmación ni se guardan reseñas únicamente en el navegador.

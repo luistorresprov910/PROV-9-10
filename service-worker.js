@@ -1,4 +1,4 @@
-const CACHE = 'prov910-local-reviews-v16';
+const CACHE = 'prov910-supabase-reviews-v17';
 const FILES = [
   './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html', './reviews.html',
   './styles.css', './app.js', './manifest.webmanifest',

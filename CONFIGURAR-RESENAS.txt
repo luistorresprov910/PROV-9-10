@@ -1,0 +1,11 @@
+PROV 9:10 — CONEXIÓN DE RESEÑAS A SUPABASE
+
+1. En Supabase > SQL Editor, abre una consulta nueva.
+2. Abre supabase/reviews.sql de este ZIP, copia todo el contenido y pulsa Run.
+   Si ya ejecutaste un SQL anterior, vuelve a ejecutar este archivo actualizado.
+3. Sube TODO el contenido de la carpeta prov910_visual a la raíz del repositorio GitHub, sustituyendo los archivos anteriores. No subas el ZIP como un único archivo.
+4. Espera a que GitHub Pages publique los cambios y prueba enviando una reseña.
+
+La URL y la clave publishable de Supabase ya están configuradas en app.js. La clave publishable está diseñada para usarse en el navegador; nunca añadas una service_role/secret key a la web.
+
+Las reseñas se publican automáticamente. Esto también significa que un visitante puede enviar contenido público sin moderación. Revisa periódicamente las reseñas y añade protección antispam antes de usar la tienda a gran escala.
