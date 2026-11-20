@@ -1,4 +1,4 @@
-const CACHE = 'prov910-reviews-product-linked-v14';
+const CACHE = 'prov910-reviews-product-linked-v15';
 const FILES = [
   './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html', './reviews.html',
   './styles.css', './app.js', './manifest.webmanifest',
