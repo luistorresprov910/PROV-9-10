@@ -1,6 +1,6 @@
 // Configura aquí el proyecto Supabase antes de activar cuentas y captación real.
-const SUPABASE_URL = '';
-const SUPABASE_ANON_KEY = '';
+const SUPABASE_URL = 'https://mbhssbfjwraphbcaqmwd.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_FaPVT6fLfM1Y0l2UBQWM8g_xqinYbHs';
 const supabaseReady = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase);
 const sb = supabaseReady ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
 const products = [
@@ -85,7 +85,7 @@ function renderProductDetail(){
  if(!p){host.innerHTML='<div class="product-not-found"><p class="eyebrow">COLECCIÓN PROV 9:10</p><h1>Producto no encontrado</h1><a class="btn btn-dark" href="productos.html">Volver a productos</a></div>';return;}
  document.title=`${p.name} | PROV 9:10`;
  const gallery=(p.gallery&&p.gallery.length?p.gallery:[p.image]);
- host.innerHTML=`<a class="back-to-products" href="productos.html">← Volver a la colección</a><div class="detail-layout"><div class="detail-gallery"><div class="detail-photo"><img id="detailMainImage" src="${gallery[0]}" alt="${p.name}" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('image-pending');this.parentElement.insertAdjacentHTML('beforeend','<span>Fotografía del proveedor pendiente</span>')"></div>${gallery.length>1?`<div class="detail-thumbnails" role="group" aria-label="Vistas del producto">${gallery.map((src,i)=>`<button class="detail-thumb ${i===0?'active':''}" type="button" data-gallery-src="${src}" aria-label="${i===0?'Vista principal':'Ver detalle'}"><img src="${src}" alt=""></button>`).join('')}</div>`:''}</div><div class="detail-info"><p class="eyebrow">PROV 9:10 · ANILLOS CON SIGNIFICADO</p><h1>${p.name}</h1><p class="detail-price">${euro(p.price)}</p><p class="detail-description">${p.desc}. Una pieza de estilo atemporal, pensada para llevar contigo un símbolo de aquello en lo que crees.</p><div class="detail-rule"></div>${p.finishes?`<label class="detail-size-label" for="finish-${p.id}">ELIGE EL ACABADO</label><select class="detail-size detail-finish" id="finish-${p.id}"><option value="">Selecciona un acabado</option>${p.finishes.map(x=>`<option value="${x}">${x}</option>`).join('')}</select><p class="finish-hint">Elige el acabado que prefieras para este diseño.</p>`:''}<label class="detail-size-label" for="size-${p.id}">ELIGE TU TALLA</label><select class="detail-size" id="size-${p.id}"><option value="">Selecciona una talla</option>${[16,17,18,19,20,21,22,23].map(x=>`<option value="${x}">${x}</option>`).join('')}</select><button class="btn btn-dark detail-add" data-add="${p.id}">AÑADIR A LA CESTA</button><p class="detail-note">Acero inoxidable · Diseño masculino · PROV 9:10</p><div class="detail-rule"></div><details class="detail-accordion"><summary>Detalles del producto</summary><p>${p.desc}. Consulta la disponibilidad de tallas y las características exactas antes de realizar tu pedido.</p></details><details class="detail-accordion"><summary>Envíos y devoluciones</summary><p>La información definitiva sobre plazos de envío, devoluciones y garantías se publicará cuando se confirme con el proveedor.</p></details></div></div><section class="product-reviews section" id="product-reviews"><div class="section-heading"><div><p class="eyebrow">OPINIONES DE CLIENTES</p><h2>Reseñas de este anillo</h2></div><a class="home-text-link" href="reviews.html">VER TODAS LAS RESEÑAS ↗</a></div><p class="reviews-status" id="productReviewsStatus">Cargando opiniones…</p><div class="reviews-list" id="productReviewsList"></div><form class="review-form product-review-form" id="productReviewForm"><h3>Deja tu reseña</h3><label>Tu nombre<input name="display_name" maxlength="50" required placeholder="Cómo quieres aparecer"></label><label>Valoración</label><div class="rating-input" role="radiogroup" aria-label="Valoración de 1 a 5 estrellas"><label><input type="radio" name="rating" value="1" required><span>★</span></label><label><input type="radio" name="rating" value="2"><span>★</span></label><label><input type="radio" name="rating" value="3"><span>★</span></label><label><input type="radio" name="rating" value="4"><span>★</span></label><label><input type="radio" name="rating" value="5"><span>★</span></label></div><label>Título<input name="title" maxlength="80" required placeholder="Resume tu experiencia"></label><label>Tu opinión<textarea name="body" rows="4" maxlength="1000" required placeholder="Cuéntanos qué te ha parecido…"></textarea></label><button class="btn btn-dark" type="submit">ENVIAR RESEÑA →</button><p class="form-note" id="productReviewMessage">Tu reseña se revisará antes de publicarse.</p></form></section>`;
+ host.innerHTML=`<a class="back-to-products" href="productos.html">← Volver a la colección</a><div class="detail-layout"><div class="detail-gallery"><div class="detail-photo"><img id="detailMainImage" src="${gallery[0]}" alt="${p.name}" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('image-pending');this.parentElement.insertAdjacentHTML('beforeend','<span>Fotografía del proveedor pendiente</span>')"></div>${gallery.length>1?`<div class="detail-thumbnails" role="group" aria-label="Vistas del producto">${gallery.map((src,i)=>`<button class="detail-thumb ${i===0?'active':''}" type="button" data-gallery-src="${src}" aria-label="${i===0?'Vista principal':'Ver detalle'}"><img src="${src}" alt=""></button>`).join('')}</div>`:''}</div><div class="detail-info"><p class="eyebrow">PROV 9:10 · ANILLOS CON SIGNIFICADO</p><h1>${p.name}</h1><p class="detail-price">${euro(p.price)}</p><p class="detail-description">${p.desc}. Una pieza de estilo atemporal, pensada para llevar contigo un símbolo de aquello en lo que crees.</p><div class="detail-rule"></div>${p.finishes?`<label class="detail-size-label" for="finish-${p.id}">ELIGE EL ACABADO</label><select class="detail-size detail-finish" id="finish-${p.id}"><option value="">Selecciona un acabado</option>${p.finishes.map(x=>`<option value="${x}">${x}</option>`).join('')}</select><p class="finish-hint">Elige el acabado que prefieras para este diseño.</p>`:''}<label class="detail-size-label" for="size-${p.id}">ELIGE TU TALLA</label><select class="detail-size" id="size-${p.id}"><option value="">Selecciona una talla</option>${[16,17,18,19,20,21,22,23].map(x=>`<option value="${x}">${x}</option>`).join('')}</select><button class="btn btn-dark detail-add" data-add="${p.id}">AÑADIR A LA CESTA</button><p class="detail-note">Acero inoxidable · Diseño masculino · PROV 9:10</p><div class="detail-rule"></div><details class="detail-accordion"><summary>Detalles del producto</summary><p>${p.desc}. Consulta la disponibilidad de tallas y las características exactas antes de realizar tu pedido.</p></details><details class="detail-accordion"><summary>Envíos y devoluciones</summary><p>La información definitiva sobre plazos de envío, devoluciones y garantías se publicará cuando se confirme con el proveedor.</p></details></div></div><section class="product-reviews section" id="product-reviews"><div class="section-heading"><div><p class="eyebrow">OPINIONES DE CLIENTES</p><h2>Reseñas de este anillo</h2></div><a class="home-text-link" href="reviews.html">VER TODAS LAS RESEÑAS ↗</a></div><p class="reviews-status" id="productReviewsStatus">Cargando opiniones…</p><div class="reviews-list" id="productReviewsList"></div><form class="review-form product-review-form" id="productReviewForm"><h3>Deja tu reseña</h3><label>Tu nombre<input name="display_name" maxlength="50" required placeholder="Cómo quieres aparecer"></label><label>Valoración</label><div class="rating-input" role="radiogroup" aria-label="Valoración de 1 a 5 estrellas"><label><input type="radio" name="rating" value="1" required><span>★</span></label><label><input type="radio" name="rating" value="2"><span>★</span></label><label><input type="radio" name="rating" value="3"><span>★</span></label><label><input type="radio" name="rating" value="4"><span>★</span></label><label><input type="radio" name="rating" value="5"><span>★</span></label></div><label>Título<input name="title" maxlength="80" required placeholder="Resume tu experiencia"></label><label>Tu opinión<textarea name="body" rows="4" maxlength="1000" required placeholder="Cuéntanos qué te ha parecido…"></textarea></label><button class="btn btn-dark" type="submit">ENVIAR RESEÑA →</button><p class="form-note" id="productReviewMessage">Tu reseña se guardará en este navegador y aparecerá en este dispositivo.</p></form></section>`;
  host.querySelectorAll('[data-gallery-src]').forEach(btn=>btn.addEventListener('click',()=>{
    const main=host.querySelector('#detailMainImage');
    if(main){main.style.opacity='0.35';setTimeout(()=>{main.src=btn.dataset.gallerySrc;main.style.opacity='1';},100);}
@@ -109,8 +109,10 @@ document.addEventListener('click',event=>{
 });
 
 
-// Reseñas compartidas: página general y fichas individuales.
+// Reseñas: almacenamiento local del navegador cuando no hay base de datos conectada.
+// En modo local las opiniones se guardan en este dispositivo y se muestran inmediatamente.
 async function initReviews(){
+ const STORAGE_KEY='prov910_reviews_v1';
  const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const productId=document.body.dataset.productId||new URLSearchParams(location.search).get('id')||null;
  const globalList=document.querySelector('#reviewsList');
@@ -119,25 +121,33 @@ async function initReviews(){
  const status=globalList?document.querySelector('#reviewsStatus'):document.querySelector('#productReviewsStatus');
  const message=globalList?document.querySelector('#reviewFormMessage'):document.querySelector('#productReviewMessage');
  const list=globalList||productList;
+ if(!list||!status)return;
+ const readLocal=()=>{try{const rows=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(rows)?rows:[];}catch(e){return [];}};
+ const writeLocal=rows=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(rows));return true;}catch(e){return false;}};
  const render=rows=>{
-  if(!rows?.length){list.innerHTML='<div class="reviews-empty"><span>✧</span><h3>Aún no hay reseñas publicadas</h3><p>Cuando se aprueben las primeras opiniones, aparecerán aquí.</p></div>';return;}
-  list.innerHTML=rows.map(r=>`<article class="review-card"><div class="review-stars" aria-label="${r.rating} de 5 estrellas">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</div><h3>${esc(r.title)}</h3><p>${esc(r.body)}</p><div class="review-byline"><strong>${esc(r.display_name)}</strong><span>${new Date(r.created_at).toLocaleDateString('es-ES',{year:'numeric',month:'long'})}</span></div></article>`).join('');
+  if(!rows?.length){list.innerHTML='<div class="reviews-empty"><span>✧</span><h3>Aún no hay reseñas</h3><p>Cuando se comparta la primera opinión, aparecerá aquí.</p></div>';return;}
+  list.innerHTML=rows.map(r=>`<article class="review-card"><div class="review-stars" aria-label="${Number(r.rating)} de 5 estrellas">${'★'.repeat(Math.max(0,Math.min(5,Number(r.rating)||0)))}${'☆'.repeat(5-Math.max(0,Math.min(5,Number(r.rating)||0)))}</div><h3>${esc(r.title)}</h3><p>${esc(r.body)}</p><div class="review-byline"><strong>${esc(r.display_name)}</strong><span>${new Date(r.created_at).toLocaleDateString('es-ES',{year:'numeric',month:'long'})}</span></div></article>`).join('');
  };
- if(!sb){status.textContent='Las reseñas compartidas necesitan conectar Supabase y ejecutar supabase/reviews.sql. El formulario queda desactivado hasta activar la base de datos.';render([]);form?.querySelector('button[type="submit"]')?.setAttribute('disabled','disabled');return;}
- try{
-  let q=sb.from('reviews').select('display_name,rating,title,body,created_at,product_id').eq('status','approved').order('created_at',{ascending:false}).limit(100);
-  if(productId) q=q.eq('product_id',productId);
-  const {data,error}=await q;if(error)throw error;
-  status.textContent=productId?`${data.length} reseñas de este anillo`:`${data.length} reseñas publicadas`;render(data);
- }catch(err){status.textContent='No se han podido cargar las reseñas. Comprueba la configuración de Supabase.';render([]);}
+ const load=async()=>{
+  if(sb){
+   try{let q=sb.from('reviews').select('display_name,rating,title,body,created_at,product_id').eq('status','approved').order('created_at',{ascending:false}).limit(100);if(productId)q=q.eq('product_id',productId);const {data,error}=await q;if(error)throw error;render(data||[]);status.textContent=productId?`${data.length} reseñas de este anillo`:`${data.length} reseñas publicadas`;return;}
+   catch(err){status.textContent='No se ha podido conectar con el servicio de reseñas. Se mostrarán las opiniones guardadas en este navegador.';}
+  }
+  const rows=readLocal().filter(r=>!productId||r.product_id===productId);
+  render(rows);status.textContent=productId?`${rows.length} reseñas guardadas en este dispositivo`:`${rows.length} reseñas guardadas en este dispositivo`;
+ };
+ await load();
+ window.addEventListener('storage',e=>{if(e.key===STORAGE_KEY)load();});
  if(form)form.addEventListener('submit',async e=>{
-  e.preventDefault();if(!sb)return;if(!form.reportValidity())return;
+  e.preventDefault();if(!form.reportValidity())return;
   const button=form.querySelector('button[type="submit"]');const d=new FormData(form);
-  const payload={display_name:String(d.get('display_name')).trim(),rating:Number(d.get('rating')),title:String(d.get('title')).trim(),body:String(d.get('body')).trim(),product_id:productId||String(d.get('product_id')||'').trim()||null,status:'pending'};
-  if(payload.display_name.length<2||payload.body.length<10||payload.rating<1||payload.rating>5){message.textContent='Revisa los campos. La opinión debe tener al menos 10 caracteres.';return;}
-  button.disabled=true;button.textContent='ENVIANDO…';message.textContent='Enviando tu reseña…';
-  try{const {error}=await sb.from('reviews').insert(payload);if(error)throw error;form.reset();message.textContent='¡Gracias! Tu reseña se ha enviado y aparecerá cuando sea aprobada.';}
-  catch(err){message.textContent='No se ha podido enviar la reseña. Comprueba que has actualizado la tabla reviews en Supabase.';}
+  const payload={id:`local-${Date.now()}-${Math.random().toString(36).slice(2,8)}`,display_name:String(d.get('display_name')||'').trim(),rating:Number(d.get('rating')),title:String(d.get('title')||'').trim(),body:String(d.get('body')||'').trim(),product_id:productId||String(d.get('product_id')||'').trim()||null,created_at:new Date().toISOString()};
+  if(payload.display_name.length<2||payload.body.length<10||payload.title.length<2||payload.rating<1||payload.rating>5){message.textContent='Revisa los campos. La opinión debe tener un título y al menos 10 caracteres.';return;}
+  button.disabled=true;button.textContent='GUARDANDO…';message.textContent=sb?'Publicando tu reseña…':'Guardando tu reseña en este dispositivo…';
+  try{
+   if(sb){const {error}=await sb.from('reviews').insert({...payload,status:'approved'});if(error)throw error;form.reset();message.textContent='¡Gracias! Tu reseña ya está publicada y visible para todos.';await load();}
+   else{const rows=readLocal();rows.unshift(payload);if(!writeLocal(rows))throw new Error('storage');form.reset();message.textContent='¡Reseña guardada! Ya aparece en el apartado de reseñas de este navegador.';await load();}
+  }catch(err){message.textContent=sb?'No se ha podido enviar la reseña. Se ha producido un error al conectar con el servicio.':'No se ha podido guardar la reseña. Comprueba que el navegador permite guardar datos y que no está en modo privado.';}
   finally{button.disabled=false;button.textContent='ENVIAR RESEÑA →';}
  });
 }

@@ -119,10 +119,18 @@ ACTUALIZACIÓN DEL CATÁLOGO
 - Los acabados del Ichthys y del Sello Vintage se conservan en sus fichas y se guardan en la cesta.
 
 
-PASO 5 — ACTIVAR RESEÑAS COMPARTIDAS
-- La sexta página es reviews.html y permite consultar reseñas aprobadas y enviar nuevas opiniones.
-- Para que las reseñas se compartan entre todos los visitantes, configura primero SUPABASE_URL y SUPABASE_ANON_KEY en app.js (los mismos datos del paso 2).
-- Ejecuta supabase/reviews.sql en Supabase > SQL Editor.
-- Las opiniones nuevas se guardan como pending y no aparecen públicamente hasta que las apruebes. Esto evita publicar spam automáticamente.
-- Para aprobar una opinión, revisa la tabla reviews en Supabase y cambia status de pending a approved. Para rechazarla, usa rejected. No des permisos de actualización a usuarios públicos.
-- Si Supabase no está configurado, la página muestra un aviso y no simula que una reseña se ha publicado.
+PASO 5 — RESEÑAS SIN BASE DE DATOS EXTERNA
+- La página reviews.html y las fichas de producto permiten consultar y enviar reseñas.
+- Por defecto, las reseñas se guardan en el almacenamiento local del navegador (localStorage). No hace falta configurar Supabase ni crear una cuenta.
+- Las opiniones aparecen inmediatamente en la página general y en la ficha del producto correspondiente, siempre que se consulten desde el mismo navegador y dispositivo.
+- IMPORTANTE: este modo local no comparte las reseñas con otros visitantes ni sincroniza los datos entre dispositivos. Si se borran los datos del navegador, también pueden perderse las reseñas guardadas.
+- Para compartir reseñas entre todos los visitantes hace falta conectar una base de datos online. El soporte opcional de Supabase y el archivo supabase/reviews.sql se conservan para esa futura configuración.
+
+
+CONFIGURACIÓN DE RESEÑAS COMPARTIDAS (SUPABASE)
+1. El archivo app.js ya incluye la URL del proyecto y la Publishable key pública.
+2. En Supabase abre SQL Editor > New query.
+3. Copia y ejecuta todo el contenido de supabase/reviews.sql.
+4. Publica esta versión actualizada de la web en GitHub Pages.
+5. Las reseñas nuevas se publican automáticamente y se comparten entre visitantes.
+Nota: las reseñas anteriores guardadas solo en localStorage no se migran automáticamente.
