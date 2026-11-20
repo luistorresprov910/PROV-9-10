@@ -197,6 +197,33 @@ html.page-leaving body{opacity:.72;transform:translateY(-3px);transition:opacity
 .modal#leadModal{position:fixed!important;inset:0!important;width:100vw;height:100vh;height:100dvh;min-height:100vh;display:grid;place-items:center;overflow-y:auto;overscroll-behavior:contain;padding:20px!important;margin:0!important;z-index:9999!important;}
 .modal#leadModal.hidden{display:none!important;}
 .modal#leadModal>.lead-card{position:relative!important;inset:auto!important;align-self:center;justify-self:center;margin:auto!important;width:min(100%,490px);max-height:calc(100dvh - 40px);overflow-y:auto;}
-body.modal-open{overflow:hidden!important;}
+
 @media(max-width:900px){#productGrid{grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:560px){#productGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 10px;} .modal#leadModal{padding:12px!important;} .modal#leadModal>.lead-card{max-height:calc(100dvh - 24px);}}
+
+
+/* FIX V10: modales centrados sin bloquear el desplazamiento de la página */
+.modal{
+ position:fixed!important; inset:0!important; width:100vw; height:100vh; height:100dvh;
+ min-height:100vh; display:flex; align-items:center; justify-content:center;
+ padding:clamp(12px,3vw,24px)!important; margin:0!important;
+ overflow:visible!important; overscroll-behavior:auto; z-index:9999!important;
+ pointer-events:none!important;
+}
+.modal.hidden{display:none!important;}
+.modal>.modal-card{
+ pointer-events:auto!important; position:relative!important; inset:auto!important;
+ align-self:center; margin:auto!important; width:min(100%,490px);
+ max-height:calc(100dvh - 32px); overflow-y:auto; overscroll-behavior:contain;
+ -webkit-overflow-scrolling:touch;
+}
+.modal>.modal-card.legal{width:min(100%,600px);}
+.modal>.modal-card.lead-card{width:min(100%,490px); max-height:calc(100dvh - 32px);}
+/* No se inmoviliza el body: se puede seguir desplazando la página detrás del cuadro. */
+body.modal-open{overflow:auto!important; position:static!important; width:auto!important;}
+.modal .close{z-index:2;}
+.modal button:disabled{opacity:.65;cursor:wait;}
+@media(max-width:560px){
+ .modal{padding:10px!important; align-items:center!important;}
+ .modal>.modal-card,.modal>.modal-card.lead-card{max-height:calc(100dvh - 20px);padding:26px 20px;}
+}

@@ -1,4 +1,4 @@
-const CACHE = 'prov910-catalog-v9-centered-popup';
+const CACHE = 'prov910-catalog-v10-modal-scroll-fix';
 const FILES = [
   './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html',
   './styles.css', './app.js', './manifest.webmanifest',
