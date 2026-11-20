@@ -1,10 +1,11 @@
-const CACHE = 'prov910-catalog-v10-modal-scroll-fix';
+const CACHE = 'prov910-editorial-visual-v11';
 const FILES = [
   './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html',
   './styles.css', './app.js', './manifest.webmanifest',
   './assets/icon.svg', './assets/image-proveedor-pendiente.svg', './assets/logo-prov910-principal.png', './assets/logo-prov910-inverso.png',
   './assets/logo-prov910.png', './assets/logo-prov910-white.png', './assets/prov910-logo-principal.png', './assets/prov910-logo-inverso.png',
   './assets/anillo-referencia.png', './assets/guia-prov910.pdf',
+  './assets/catalog/ring-06-classic-cross-pro.jpg', './assets/catalog/ring-12-hammered-gold-cross-pro.jpg', './assets/catalog/ring-14-templar-shield-pro.jpg',
   './assets/catalog/ring-01-reference-pro.jpg', './assets/catalog/ring-01-reference-detalle.jpg',
   './assets/catalog/ring-05-templar-cross-pro.jpg', './assets/catalog/ring-05-templar-cross-detalle.jpg',
   './assets/catalog/ring-06-classic-cross-pro.jpg', './assets/catalog/ring-06-classic-cross-detalle.jpg',
