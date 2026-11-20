@@ -1,6 +1,6 @@
-const CACHE = 'prov910-editorial-visual-v11';
+const CACHE = 'prov910-reviews-product-linked-v14';
 const FILES = [
-  './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html',
+  './', './index.html', './sobre-mi.html', './productos.html', './producto.html', './contacto.html', './blog.html', './reviews.html',
   './styles.css', './app.js', './manifest.webmanifest',
   './assets/icon.svg', './assets/image-proveedor-pendiente.svg', './assets/logo-prov910-principal.png', './assets/logo-prov910-inverso.png',
   './assets/logo-prov910.png', './assets/logo-prov910-white.png', './assets/prov910-logo-principal.png', './assets/prov910-logo-inverso.png',

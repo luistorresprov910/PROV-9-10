@@ -2,7 +2,7 @@ PROV 9:10 — WEB INICIAL PARA GITHUB PAGES
 ========================================
 
 QUÉ INCLUYE
-- Web responsive en español con Home, Sobre mí, Productos, Contacto y Blog en ese orden.
+- Web responsive en español con Home, Sobre mí, Productos, Contacto, Blog y Reseñas en ese orden.
 - Cuatro fichas de anillos, precios iniciales de 69,99 €, 74,99 €, 79,99 € y 89,99 €.
 - Selector de talla, cesta persistente en el navegador y resumen de compra.
 - PWA instalable (manifest + service worker).
@@ -117,3 +117,12 @@ ACTUALIZACIÓN DEL CATÁLOGO
 - Los 4 modelos de los enlaces iniciales aparecen en un bloque separado al final.
 - La fotografía de los modelos Ichthys, Cruz Celta y Sello Vintage de los enlaces iniciales no se ha podido recuperar desde la URL del proveedor. Se muestra un marcador neutro para evitar repetir por error la foto de otro anillo. Sustituirlo por la foto original del proveedor antes de vender.
 - Los acabados del Ichthys y del Sello Vintage se conservan en sus fichas y se guardan en la cesta.
+
+
+PASO 5 — ACTIVAR RESEÑAS COMPARTIDAS
+- La sexta página es reviews.html y permite consultar reseñas aprobadas y enviar nuevas opiniones.
+- Para que las reseñas se compartan entre todos los visitantes, configura primero SUPABASE_URL y SUPABASE_ANON_KEY en app.js (los mismos datos del paso 2).
+- Ejecuta supabase/reviews.sql en Supabase > SQL Editor.
+- Las opiniones nuevas se guardan como pending y no aparecen públicamente hasta que las apruebes. Esto evita publicar spam automáticamente.
+- Para aprobar una opinión, revisa la tabla reviews en Supabase y cambia status de pending a approved. Para rechazarla, usa rejected. No des permisos de actualización a usuarios públicos.
+- Si Supabase no está configurado, la página muestra un aviso y no simula que una reseña se ha publicado.
